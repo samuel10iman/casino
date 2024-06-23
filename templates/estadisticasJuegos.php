@@ -8,10 +8,16 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadísticas de Juegos</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -25,9 +31,12 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
             border: none;
             border-radius: 15px;
             box-shadow: 0 9px #999;
+            margin-right: 10px;
         }
 
-        .button:hover {background-color: #3e8e41}
+        .button:hover {
+            background-color: #3e8e41;
+        }
 
         .button:active {
             background-color: #3e8e41;
@@ -35,7 +44,21 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
             transform: translateY(4px);
         }
 
-        .hidden { display: none; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
     <script>
         function showGames(type) {
@@ -49,6 +72,7 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
 <h1>Estadísticas de Juegos</h1>
 
 <a href="index.php" class="button">Volver a index.php</a>
+<a href="agregar_juego.php" class="button">Agregar Juego</a>
 
 <form id="sucursalForm" method="post">
     <label for="sucursal">Seleccione una sucursal:</label>
@@ -80,28 +104,23 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
                 jm.Maquina_ID,
                 jm.Nombre AS Juego,
                 c.Nombres AS Participante,
-                c.Apellidos AS Participante_Apellidos,
-                p.Nombre AS Crupier_Nombre
+                c.Apellidos AS Participante_Apellidos
             FROM Juego_Maquina jm
             LEFT JOIN Cliente c ON jm.Cliente_ID = c.Cliente_ID AND jm.Sucursal_ID = c.Sucursal_ID
-            LEFT JOIN Crupier_Juegos cj ON jm.Maquina_ID = cj.Personal_ID
-            LEFT JOIN Personal p ON cj.Personal_ID = p.Personal_ID
             WHERE jm.Sucursal_ID = $sucursal_id";
         $maquina_result = mysqli_query($enlace, $maquina_query);
         ?>
-        <table border="1">
+        <table>
             <tr>
                 <th>Id de la Máquina</th>
                 <th>Nombre del Juego</th>
                 <th>Participante</th>
-                <th>Crupier</th>
             </tr>
             <?php while ($row = mysqli_fetch_assoc($maquina_result)): ?>
                 <tr>
                     <td><?php echo $row['Maquina_ID']; ?></td>
                     <td><?php echo $row['Juego']; ?></td>
                     <td><?php echo $row['Participante'] . ' ' . $row['Participante_Apellidos']; ?></td>
-                    <td><?php echo $row['Crupier_Nombre']; ?></td>
                 </tr>
             <?php endwhile; ?>
         </table>
@@ -116,25 +135,21 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
                 cm.Numero_Partida,
                 cm.Hora_Entrada,
                 cm.Hora_Salida,
-                c.Nombres AS Participante,
-                c.Apellidos AS Participante_Apellidos,
                 p.Nombre AS Crupier_Nombre
             FROM Juego_Mesa jm
             LEFT JOIN Cliente_Mesa cm ON jm.Mesa_ID = cm.Mesa_ID
-            LEFT JOIN Cliente c ON cm.Cliente_ID = c.Cliente_ID AND jm.Sucursal_ID = c.Sucursal_ID
             LEFT JOIN Crupier cr ON jm.Personal_ID = cr.Personal_ID
             LEFT JOIN Personal p ON cr.Personal_ID = p.Personal_ID
             WHERE jm.Sucursal_ID = $sucursal_id";
         $mesa_result = mysqli_query($enlace, $mesa_query);
         ?>
-        <table border="1">
+        <table>
             <tr>
                 <th>Nombre del Juego</th>
                 <th>Id de la Mesa</th>
                 <th>Número de Partida</th>
                 <th>Hora de Entrada</th>
                 <th>Hora de Salida</th>
-                <th>Participante</th>
                 <th>Crupier</th>
             </tr>
             <?php while ($row = mysqli_fetch_assoc($mesa_result)): ?>
@@ -144,7 +159,6 @@ $sucursales_result = mysqli_query($enlace, $sucursales_query);
                     <td><?php echo $row['Numero_Partida']; ?></td>
                     <td><?php echo $row['Hora_Entrada']; ?></td>
                     <td><?php echo $row['Hora_Salida']; ?></td>
-                    <td><?php echo $row['Participante'] . ' ' . $row['Participante_Apellidos']; ?></td>
                     <td><?php echo $row['Crupier_Nombre']; ?></td>
                 </tr>
             <?php endwhile; ?>
