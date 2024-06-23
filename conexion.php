@@ -13,7 +13,7 @@
     if(!$enlace){
         die("no se conecto a la bd" . mysqli_error());
     }
-    echo "conexion exitosa";
+    //echo "conexion exitosa";
     
     ?>
 </body>

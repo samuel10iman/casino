@@ -29,10 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar si se encontró un usuario
     if (mysqli_stmt_num_rows($stmt) == 1) {
-        // Iniciar sesión y almacenar datos en sesión
+        // Usuario y contraseña correctos, guardar usuario en sesión
         $_SESSION['usuario'] = $username;
 
-        // Redirigir a la página de administración después del inicio de sesión exitoso
+        // Redirigir a la página principal
         header("Location: templates/index.php");
         exit();
     } else {
