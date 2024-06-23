@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($mesa_result) {
             $_SESSION['mensaje_exito'] = "Juego de mesa agregado correctamente.";
-            header("Location: estadisticasJuego.php");
+            header("Location: estadisticasJuegos.php");
             exit();
         } else {
             echo "Error al agregar juego de mesa: " . mysqli_error($enlace);

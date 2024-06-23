@@ -60,7 +60,7 @@
             <ul class="features-list">
                 <li onclick="openUserManagementModal()">Gestión de usuarios</li>
                 <li onclick="redirectTo('estadisticasJuegos.php')">Estadísticas de juegos</li>
-                <li onclick="openCasinoConfigModal()">Configuración del casino</li>
+                <li onclick="redirectTo('almacen.php')">Configuración del casino</li>
                 <li onclick="openSupportModal()">Soporte y asistencia</li>
             </ul>
         </section>
@@ -81,7 +81,6 @@
         <div class="modal-content">
             <h2>Configuración del casino</h2>
             <button onclick="redirectTo('almacen.php')">Almacén</button>
-            <button onclick="redirectTo('juegos.php')">Juegos</button>
             <button onclick="closeCasinoConfigModal()">Cerrar</button>
         </div>
     </div>
