@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($maquina_result) {
             $_SESSION['mensaje_exito'] = "Juego de máquina agregado correctamente.";
-            header("Location: estadisticasJuego.php");
+            header("Location: estadisticasJuegos.php");
             exit();
         } else {
             echo "Error al agregar juego de máquina: " . mysqli_error($enlace);
@@ -38,24 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($tipoJuego == 'mesa') {
         $numeroMesa = $_POST['numeroMesa'];
         $crupier = $_POST['crupier'];
-
-        // Verificar si el juego o el crupier ya existen en la sucursal
-        $verificar_query = "SELECT * FROM juego_mesa WHERE nombre = '$nombreJuego' AND sucursal_id = '$sucursal'";
-        $verificar_crupier_query = "SELECT * FROM juego_mesa WHERE personal_id = '$crupier' AND sucursal_id = '$sucursal'";
-        $verificar_result = mysqli_query($enlace, $verificar_query);
+    
+        // Verificar si el crupier existe en la tabla crupier
+        $verificar_crupier_query = "SELECT Personal_ID FROM crupier WHERE Personal_ID = '$crupier'";
         $verificar_crupier_result = mysqli_query($enlace, $verificar_crupier_query);
-
-        if (mysqli_num_rows($verificar_result) > 0 || mysqli_num_rows($verificar_crupier_result) > 0) {
-            $_SESSION['mensaje_error'] = "El nombre del juego o el crupier ya están registrados.";
+    
+        if (mysqli_num_rows($verificar_crupier_result) == 0) {
+            $_SESSION['mensaje_error'] = "El crupier seleccionado no existe.";
             header("Location: agregar_juego.php");
             exit();
         }
-
+    
         // Procesamiento para juego de mesa
         $mesa_query = "INSERT INTO juego_mesa (sucursal_id, nombre, numero_mesa, personal_id) 
                        VALUES ('$sucursal', '$nombreJuego', '$numeroMesa', '$crupier')";
         $mesa_result = mysqli_query($enlace, $mesa_query);
-
+    
         if ($mesa_result) {
             $_SESSION['mensaje_exito'] = "Juego de mesa agregado correctamente.";
             header("Location: estadisticasJuegos.php");
@@ -64,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Error al agregar juego de mesa: " . mysqli_error($enlace);
         }
     }
+    
 }
 
 mysqli_close($enlace);

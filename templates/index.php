@@ -40,7 +40,7 @@
 </head>
 <body>
     <header>
-        <h1 onclick="redirectTo('index.php')">Casino Admin</h1>
+        <h1 onclick="redirectTo('index.php')">Casino Sideral Luján Carrión</h1>
         <nav>
             <ul>
                 <li>"Nosotros ganamos tu plata, tú la experiencia"</li>
@@ -49,9 +49,9 @@
     </header>
     <div class="hero">
         <div class="hero-content">
-            <h2>Bienvenido a Casino Admin</h2>
+            <h2>Bienvenido a Casino Sideral Luján Carrión</h2>
             <p>Gestione y supervise todos los aspectos de su casino desde un solo lugar.</p>
-            <button onclick="redirectTo('InicioSesion.php')">Empezar</button>
+            
         </div>
     </div>
     <main>
@@ -59,7 +59,7 @@
             <h2>Características Principales</h2>
             <ul class="features-list">
                 <li onclick="openUserManagementModal()">Gestión de usuarios</li>
-                <li onclick="redirectTo('estadisticasJuegos.php')">Estadísticas de juegos</li>
+                <li onclick="redirectTo('estadisticasJuegos.php')">Administración de juegos</li>
                 <li onclick="redirectTo('almacen.php')">Configuración del casino</li>
                 <li onclick="openSupportModal()">Soporte y asistencia</li>
             </ul>
@@ -89,9 +89,27 @@
     <div id="supportModal" class="modal">
         <div class="modal-content">
             <h2>Soporte y asistencia</h2>
-            <button onclick="redirectTo('proveedores.php')">Proveedores</button>
-            <button onclick="redirectTo('personal.php')">Personal</button>
+            <button onclick="openProveedorModal()">Proveedores</button>
+            <button onclick="openPersonalManagementModal()">Personal</button>
             <button onclick="closeSupportModal()">Cerrar</button>
+        </div>
+    </div>
+    <!-- Modal para Personal -->
+    <div id="ProveedorModal" class="modal">
+        <div class="modal-content">
+            <h2>Proveedor</h2>
+            <button onclick="redirectTo('registro_proveedores.php')">Crear</button>
+            <button onclick="redirectTo('buscarProveedor.php')">Buscar</button>
+            <button onclick="closeProveedorModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="personalManagementModal" class="modal">
+        <div class="modal-content">
+            <h2>Personal</h2>
+            <button onclick="redirectTo('registroPersonal.php')">Crear</button>
+            <button onclick="redirectTo('buscarPersonal.php')">Buscar</button>
+            <button onclick="closePersonalManagementModal()">Cerrar</button>
         </div>
     </div>
 
@@ -136,6 +154,29 @@
         // Función para cerrar el modal de soporte y asistencia
         function closeSupportModal() {
             var modal = document.getElementById('supportModal');
+            modal.style.display = 'none';
+        }
+
+        function openProveedorModal() {
+            var modal = document.getElementById('ProveedorModal');
+            modal.style.display = 'block';
+        }
+
+        // Función para cerrar el modal de gestión de personal
+        function closeProveedorModal() {
+            var modal = document.getElementById('ProveedorModal');
+            modal.style.display = 'none';
+        }
+
+        // Función para abrir el modal de gestión de personal
+        function openPersonalManagementModal() {
+            var modal = document.getElementById('personalManagementModal');
+            modal.style.display = 'block';
+        }
+
+        // Función para cerrar el modal de gestión de personal
+        function closePersonalManagementModal() {
+            var modal = document.getElementById('personalManagementModal');
             modal.style.display = 'none';
         }
     </script>

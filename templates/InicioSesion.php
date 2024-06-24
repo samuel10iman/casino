@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Página de inicio de sesión para el panel administrativo del casino.">
-    <title>Iniciar Sesión - Casino Admin</title>
+    <title>Iniciar Sesión - Casino Sideral Luján Carrión</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <header>
-        <h1 onclick="redirectTo('index.php')">Casino Admin</h1>
+        <h1 onclick="redirectTo('index.php')">Casino Sideral Luján Carrión</h1>
         <nav>
             <ul>
                 <li>"Nosotros ganamos tu plata, tú la experiencia"</li>
@@ -42,7 +42,7 @@
                 <h3>Características</h3>
                 <ul class="features-list">
                     <li>Gestión de usuarios</li>
-                    <li>Estadísticas de juegos</li>
+                    <li>Administración de juegos</li>
                     <li>Configuración del casino</li>
                     <li>Soporte y asistencia</li>
                 </ul>

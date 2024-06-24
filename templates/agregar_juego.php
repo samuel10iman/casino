@@ -88,6 +88,15 @@ unset($_SESSION['mensaje_error']);
 </head>
 <body>
 
+    <header>
+        <h1 onclick="redirectTo('index.php')">Casino Sideral Luján Carrión</h1>
+        <nav>
+            <ul>
+                <li>"Nosotros ganamos tu plata, tú la experiencia"</li>
+            </ul>
+        </nav>
+    </header>
+
 <h1>Agregar Juego</h1>
 
 <?php if ($mensaje_exito): ?>
@@ -98,7 +107,7 @@ unset($_SESSION['mensaje_error']);
     <p class="error-message"><?php echo $mensaje_error; ?></p>
 <?php endif; ?>
 
-<a href="index.php" class="button">Volver a index.php</a>
+<a href="index.php" class="button">Volver a inicio</a>
 
 <form id="agregarJuegoForm" method="post" action="procesar_agregar_juego.php">
     <label for="tipoJuego">Tipo de Juego:</label>
